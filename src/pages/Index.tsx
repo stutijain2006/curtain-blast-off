@@ -105,9 +105,7 @@ const Index = () => {
               aria-label="Pull left curtain rope"
             >
               {/* Rope */}
-              <div className={`w-3 h-[60vh] bg-gradient-to-b from-[hsl(var(--gold))] via-[hsl(var(--gold-glow))] to-[hsl(var(--gold))] rounded-full shadow-lg relative ${
-                !leftRopePulled ? "animate-[float_3s_ease-in-out_infinite]" : ""
-              }`}>
+              <div className="w-3 h-[60vh] bg-gradient-to-b from-[hsl(var(--gold))] via-[hsl(var(--gold-glow))] to-[hsl(var(--gold))] rounded-full shadow-lg relative">
                 {/* Rope texture */}
                 <div className="absolute inset-0 opacity-30" style={{
                   backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 8px, hsl(var(--gold-glow)) 8px, hsl(var(--gold-glow)) 10px)"
@@ -117,7 +115,7 @@ const Index = () => {
               </div>
               
               {/* Tassel */}
-              <div className="relative w-16 h-20 mx-auto -mt-2">
+              <div className="relative w-16 h-20 -mt-2" style={{ marginLeft: '-26px' }}>
                 {/* Tassel top */}
                 <div className="w-12 h-6 mx-auto bg-gradient-to-b from-[hsl(var(--gold))] to-[hsl(var(--gold-glow))] rounded-t-full shadow-lg" />
                 {/* Tassel fringe */}
@@ -158,9 +156,7 @@ const Index = () => {
               aria-label="Pull right curtain rope"
             >
               {/* Rope */}
-              <div className={`w-3 h-[60vh] bg-gradient-to-b from-[hsl(var(--gold))] via-[hsl(var(--gold-glow))] to-[hsl(var(--gold))] rounded-full shadow-lg relative ${
-                !rightRopePulled ? "animate-[float_3s_ease-in-out_infinite]" : ""
-              }`} style={{ animationDelay: "0.5s" }}>
+              <div className="w-3 h-[60vh] bg-gradient-to-b from-[hsl(var(--gold))] via-[hsl(var(--gold-glow))] to-[hsl(var(--gold))] rounded-full shadow-lg relative">
                 {/* Rope texture */}
                 <div className="absolute inset-0 opacity-30" style={{
                   backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 8px, hsl(var(--gold-glow)) 8px, hsl(var(--gold-glow)) 10px)"
@@ -170,7 +166,7 @@ const Index = () => {
               </div>
               
               {/* Tassel */}
-              <div className="relative w-16 h-20 mx-auto -mt-2">
+              <div className="relative w-16 h-20 -mt-2" style={{ marginLeft: '-26px' }}>
                 {/* Tassel top */}
                 <div className="w-12 h-6 mx-auto bg-gradient-to-b from-[hsl(var(--gold))] to-[hsl(var(--gold-glow))] rounded-t-full shadow-lg" />
                 {/* Tassel fringe */}

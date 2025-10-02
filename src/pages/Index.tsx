@@ -5,12 +5,25 @@ import { Sparkles, ExternalLink } from "lucide-react";
 const Index = () => {
   const [ceremonyClosed, setCeremonyClosed] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const [leftRopePulled, setLeftRopePulled] = useState(false);
+  const [rightRopePulled, setRightRopePulled] = useState(false);
 
-  const handleOpenCeremony = () => {
-    setCeremonyClosed(false);
-    setTimeout(() => {
-      setShowContent(true);
-    }, 1500);
+  const handleRopePull = (side: "left" | "right") => {
+    if (side === "left") {
+      setLeftRopePulled(true);
+    } else {
+      setRightRopePulled(true);
+    }
+
+    // Open ceremony when both ropes are pulled
+    if ((side === "left" && rightRopePulled) || (side === "right" && leftRopePulled)) {
+      setTimeout(() => {
+        setCeremonyClosed(false);
+        setTimeout(() => {
+          setShowContent(true);
+        }, 2500);
+      }, 300);
+    }
   };
 
   const handleVisitWebsite = () => {
@@ -48,33 +61,148 @@ const Index = () => {
         {/* Curtains Container */}
         <div className="relative w-full max-w-6xl aspect-video flex items-center justify-center">
           
+          {/* Curtain Rod */}
+          <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-[hsl(var(--gold))] to-[hsl(var(--gold-glow))] shadow-lg z-20" />
+          
           {/* Left Curtain */}
           <div
-            className={`absolute top-0 left-0 w-1/2 h-full bg-gradient-to-b from-[hsl(var(--curtain))] to-[hsl(var(--curtain-shadow))] shadow-[var(--shadow-curtain)] transition-transform duration-[2s] ease-out ${
+            className={`absolute top-0 left-0 w-1/2 h-full bg-gradient-to-b from-[hsl(var(--curtain))] to-[hsl(var(--curtain-shadow))] shadow-[var(--shadow-curtain)] transition-all duration-[4s] ease-in-out ${
               !ceremonyClosed ? "animate-curtain-open-left" : ""
             }`}
             style={{
               backgroundImage: "repeating-linear-gradient(90deg, transparent, transparent 40px, hsl(var(--curtain-shadow)) 40px, hsl(var(--curtain-shadow)) 41px)",
+              transformOrigin: "top right",
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/20 to-transparent" />
+            {/* Curtain gathering effect */}
+            <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-black/40 to-transparent" />
           </div>
 
           {/* Right Curtain */}
           <div
-            className={`absolute top-0 right-0 w-1/2 h-full bg-gradient-to-b from-[hsl(var(--curtain))] to-[hsl(var(--curtain-shadow))] shadow-[var(--shadow-curtain)] transition-transform duration-[2s] ease-out ${
+            className={`absolute top-0 right-0 w-1/2 h-full bg-gradient-to-b from-[hsl(var(--curtain))] to-[hsl(var(--curtain-shadow))] shadow-[var(--shadow-curtain)] transition-all duration-[4s] ease-in-out ${
               !ceremonyClosed ? "animate-curtain-open-right" : ""
             }`}
             style={{
               backgroundImage: "repeating-linear-gradient(90deg, transparent, transparent 40px, hsl(var(--curtain-shadow)) 40px, hsl(var(--curtain-shadow)) 41px)",
+              transformOrigin: "top left",
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/20 to-transparent" />
+            {/* Curtain gathering effect */}
+            <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-black/40 to-transparent" />
           </div>
+
+          {/* Left Curtain Rope & Tassel */}
+          {ceremonyClosed && (
+            <button
+              onClick={() => handleRopePull("left")}
+              disabled={leftRopePulled}
+              className={`absolute left-[20%] top-0 z-30 group cursor-pointer disabled:cursor-not-allowed transition-all duration-300 ${
+                leftRopePulled ? "opacity-50" : "hover:scale-105"
+              }`}
+              aria-label="Pull left curtain rope"
+            >
+              {/* Rope */}
+              <div className={`w-3 h-[60vh] bg-gradient-to-b from-[hsl(var(--gold))] via-[hsl(var(--gold-glow))] to-[hsl(var(--gold))] rounded-full shadow-lg relative ${
+                !leftRopePulled ? "animate-[float_3s_ease-in-out_infinite]" : ""
+              }`}>
+                {/* Rope texture */}
+                <div className="absolute inset-0 opacity-30" style={{
+                  backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 8px, hsl(var(--gold-glow)) 8px, hsl(var(--gold-glow)) 10px)"
+                }} />
+                {/* Shine effect */}
+                <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-white/40 via-transparent to-transparent rounded-l-full" />
+              </div>
+              
+              {/* Tassel */}
+              <div className="relative w-16 h-20 mx-auto -mt-2">
+                {/* Tassel top */}
+                <div className="w-12 h-6 mx-auto bg-gradient-to-b from-[hsl(var(--gold))] to-[hsl(var(--gold-glow))] rounded-t-full shadow-lg" />
+                {/* Tassel fringe */}
+                <div className="flex justify-around px-1">
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="w-1 h-14 bg-gradient-to-b from-[hsl(var(--gold-glow))] to-[hsl(var(--gold))] rounded-b-full"
+                      style={{
+                        height: `${50 + Math.random() * 10}px`,
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+              
+              {!leftRopePulled && (
+                <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-[hsl(var(--gold))] text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                  Pull to Open
+                </div>
+              )}
+              {leftRopePulled && (
+                <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-[hsl(var(--gold))] text-sm font-semibold">
+                  ✓ Pulled
+                </div>
+              )}
+            </button>
+          )}
+
+          {/* Right Curtain Rope & Tassel */}
+          {ceremonyClosed && (
+            <button
+              onClick={() => handleRopePull("right")}
+              disabled={rightRopePulled}
+              className={`absolute right-[20%] top-0 z-30 group cursor-pointer disabled:cursor-not-allowed transition-all duration-300 ${
+                rightRopePulled ? "opacity-50" : "hover:scale-105"
+              }`}
+              aria-label="Pull right curtain rope"
+            >
+              {/* Rope */}
+              <div className={`w-3 h-[60vh] bg-gradient-to-b from-[hsl(var(--gold))] via-[hsl(var(--gold-glow))] to-[hsl(var(--gold))] rounded-full shadow-lg relative ${
+                !rightRopePulled ? "animate-[float_3s_ease-in-out_infinite]" : ""
+              }`} style={{ animationDelay: "0.5s" }}>
+                {/* Rope texture */}
+                <div className="absolute inset-0 opacity-30" style={{
+                  backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 8px, hsl(var(--gold-glow)) 8px, hsl(var(--gold-glow)) 10px)"
+                }} />
+                {/* Shine effect */}
+                <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-white/40 via-transparent to-transparent rounded-l-full" />
+              </div>
+              
+              {/* Tassel */}
+              <div className="relative w-16 h-20 mx-auto -mt-2">
+                {/* Tassel top */}
+                <div className="w-12 h-6 mx-auto bg-gradient-to-b from-[hsl(var(--gold))] to-[hsl(var(--gold-glow))] rounded-t-full shadow-lg" />
+                {/* Tassel fringe */}
+                <div className="flex justify-around px-1">
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="w-1 h-14 bg-gradient-to-b from-[hsl(var(--gold-glow))] to-[hsl(var(--gold))] rounded-b-full"
+                      style={{
+                        height: `${50 + Math.random() * 10}px`,
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+              
+              {!rightRopePulled && (
+                <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-[hsl(var(--gold))] text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                  Pull to Open
+                </div>
+              )}
+              {rightRopePulled && (
+                <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-[hsl(var(--gold))] text-sm font-semibold">
+                  ✓ Pulled
+                </div>
+              )}
+            </button>
+          )}
 
           {/* Center Content - Before Opening */}
           {ceremonyClosed && (
-            <div className="relative z-10 text-center space-y-8 animate-float">
+            <div className="relative z-10 text-center space-y-8 pointer-events-none">
               <div className="space-y-4">
                 <Sparkles className="w-16 h-16 mx-auto text-[hsl(var(--gold))] animate-pulse-glow" />
                 <h1 className="text-5xl md:text-7xl font-bold text-[hsl(var(--gold))] drop-shadow-[0_0_30px_hsl(var(--gold-glow))]">
@@ -83,16 +211,10 @@ const Index = () => {
                 <p className="text-xl md:text-2xl text-[hsl(var(--foreground))]">
                   18th Symposium on Earthquake Engineering
                 </p>
+                <p className="text-lg text-[hsl(var(--gold))] animate-pulse">
+                  {leftRopePulled || rightRopePulled ? "Pull both ropes to begin..." : "Pull the golden ropes to begin..."}
+                </p>
               </div>
-
-              <Button
-                onClick={handleOpenCeremony}
-                size="lg"
-                className="bg-gradient-to-r from-[hsl(var(--gold))] to-[hsl(var(--gold-glow))] text-[hsl(var(--stage))] hover:shadow-[var(--shadow-glow)] transition-all duration-300 text-lg px-8 py-6 font-bold"
-              >
-                <Sparkles className="mr-2 h-5 w-5" />
-                Begin Ceremony
-              </Button>
             </div>
           )}
 

@@ -73,12 +73,12 @@ export default {
           to: { height: "0" },
         },
         "curtain-open-left": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-100%)" },
+          "0%": { transform: "translateX(0) scaleX(1)" },
+          "100%": { transform: "translateX(-100%) scaleX(0.3)" },
         },
         "curtain-open-right": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(100%)" },
+          "0%": { transform: "translateX(0) scaleX(1)" },
+          "100%": { transform: "translateX(100%) scaleX(0.3)" },
         },
         "fade-in-scale": {
           "0%": { opacity: "0", transform: "scale(0.8) translateY(20px)" },
@@ -110,8 +110,8 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "curtain-open-left": "curtain-open-left 2s cubic-bezier(0.65, 0, 0.35, 1) forwards",
-        "curtain-open-right": "curtain-open-right 2s cubic-bezier(0.65, 0, 0.35, 1) forwards",
+        "curtain-open-left": "curtain-open-left 4s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards",
+        "curtain-open-right": "curtain-open-right 4s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards",
         "fade-in-scale": "fade-in-scale 1s cubic-bezier(0.4, 0, 0.2, 1) forwards",
         "spotlight-sweep": "spotlight-sweep 3s ease-in-out infinite",
         "float": "float 3s ease-in-out infinite",

@@ -99,7 +99,7 @@ const Index = () => {
             <button
               onClick={() => handleRopePull("left")}
               disabled={leftRopePulled}
-              className={`absolute left-[20%] top-0 z-30 group cursor-pointer disabled:cursor-not-allowed transition-all duration-300 ${
+              className={`absolute left-[8%] top-0 z-30 group cursor-pointer disabled:cursor-not-allowed transition-all duration-300 ${
                 leftRopePulled ? "opacity-50" : "hover:scale-105"
               }`}
               aria-label="Pull left curtain rope"
@@ -152,7 +152,7 @@ const Index = () => {
             <button
               onClick={() => handleRopePull("right")}
               disabled={rightRopePulled}
-              className={`absolute right-[20%] top-0 z-30 group cursor-pointer disabled:cursor-not-allowed transition-all duration-300 ${
+              className={`absolute right-[8%] top-0 z-30 group cursor-pointer disabled:cursor-not-allowed transition-all duration-300 ${
                 rightRopePulled ? "opacity-50" : "hover:scale-105"
               }`}
               aria-label="Pull right curtain rope"

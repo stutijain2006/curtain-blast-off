@@ -352,7 +352,7 @@ const Index = () => {
         
         {/* Footer Credits */}
         {showContent && (
-          <div className="absolute bottom-8 text-center text-sm text-[hsl(var(--muted-foreground))] animate-fade-in-scale" style={{ animationDelay: "0.5s" }}>
+          <div className="absolute bottom-8 text-center text-lg text-[hsl(var(--muted-foreground))] animate-fade-in-scale" style={{ animationDelay: "0.5s" }}>
             Earthquake Engineering Department
           </div>
         )}

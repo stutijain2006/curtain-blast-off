@@ -45,6 +45,13 @@ All colors MUST be HSL.
     --spotlight: 45 100% 70%;
     --gold: 45 100% 55%;
     --gold-glow: 45 100% 65%;
+    
+    /* Earthquake Colors */
+    --earth-brown: 30 40% 35%;
+    --earth-dark: 25 45% 25%;
+    --rock-gray: 210 10% 45%;
+    --rock-light: 210 10% 60%;
+    --crack: 0 0% 15%;
 
     /* Gradients */
     --gradient-stage: linear-gradient(180deg, hsl(220 25% 6%), hsl(220 30% 4%));

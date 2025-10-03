@@ -6,6 +6,8 @@ const Index = () => {
   const [showContent, setShowContent] = useState(false);
   const [leftRopePulled, setLeftRopePulled] = useState(false);
   const [rightRopePulled, setRightRopePulled] = useState(false);
+  const [earthquakeStarted, setEarthquakeStarted] = useState(false);
+  const [stoneStrike, setStoneStrike] = useState(false);
   const [grandFinale, setGrandFinale] = useState(false);
 
   const handleRopePull = (side: "left" | "right") => {
@@ -26,15 +28,24 @@ const Index = () => {
     }
   };
 
-  // Auto redirect with grand finale animation
+  // Earthquake animation sequence
   useEffect(() => {
     if (showContent) {
+      // Wait 2 seconds after curtain rises, then trigger stone strike
       setTimeout(() => {
-        setGrandFinale(true);
+        setStoneStrike(true);
+        // Start earthquake wave immediately after stone strike
         setTimeout(() => {
-          window.location.href = "https://iitr.ac.in/18see/";
-        }, 2000); // Redirect after finale animation
-      }, 3000); // Wait 3 seconds after welcome message
+          setEarthquakeStarted(true);
+          // After 7 seconds of earthquake, show grand finale
+          setTimeout(() => {
+            setGrandFinale(true);
+            setTimeout(() => {
+              window.location.href = "https://iitr.ac.in/18see/";
+            }, 2000);
+          }, 7000);
+        }, 1500);
+      }, 2000);
     }
   }, [showContent]);
 
@@ -247,16 +258,70 @@ const Index = () => {
 
           {/* Revealed Content - After Opening */}
           {showContent && (
-            <div className={`relative z-10 text-center space-y-8 max-w-3xl px-6 ${grandFinale ? 'animate-zoom-out' : 'animate-fade-in-scale'}`}>
-              <div className="space-y-6">
-                <div className="inline-block p-6 bg-[hsl(var(--card))] rounded-2xl border-2 border-[hsl(var(--gold))] shadow-[var(--shadow-dramatic)]">
-                  <h2 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-[hsl(var(--gold))] via-[hsl(var(--gold-glow))] to-[hsl(var(--gold))] bg-clip-text text-transparent animate-shimmer bg-[length:200%_auto]">
-                    Welcome!
-                  </h2>
+            <div className={`relative z-10 text-center space-y-8 max-w-4xl px-6 ${grandFinale ? 'animate-zoom-out' : 'animate-fade-in-scale'}`}>
+              {/* Striking Stone */}
+              {stoneStrike && (
+                <div className="absolute -top-32 left-1/2 -translate-x-1/2 z-50">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[hsl(var(--rock-light))] to-[hsl(var(--rock-gray))] rounded-lg animate-stone-strike shadow-2xl transform rotate-45" 
+                    style={{
+                      clipPath: "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)"
+                    }}
+                  />
+                  {/* Impact Ripple */}
+                  {earthquakeStarted && (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-32 h-32 border-4 border-[hsl(var(--gold)/0.6)] rounded-full animate-ripple" />
+                  )}
+                </div>
+              )}
+
+              <div className={`space-y-6 ${earthquakeStarted ? 'animate-earthquake-wave' : ''}`}>
+                {/* Ground/Soil Base */}
+                <div className="relative inline-block">
+                  <div className="absolute -bottom-4 left-0 right-0 h-8 bg-gradient-to-b from-[hsl(var(--earth-brown))] to-[hsl(var(--earth-dark))] rounded-lg overflow-hidden"
+                    style={{
+                      backgroundImage: `
+                        repeating-linear-gradient(90deg, 
+                          hsl(var(--earth-brown)) 0px, 
+                          hsl(var(--earth-dark)) 3px, 
+                          hsl(var(--earth-brown)) 6px),
+                        repeating-linear-gradient(0deg,
+                          transparent 0px,
+                          hsl(var(--crack)) 1px,
+                          transparent 2px)
+                      `
+                    }}
+                  >
+                    {/* Rock particles in soil */}
+                    <div className="absolute inset-0 flex items-center justify-around px-2">
+                      {[...Array(8)].map((_, i) => (
+                        <div
+                          key={i}
+                          className={`w-2 h-2 bg-[hsl(var(--rock-gray))] rounded-sm ${earthquakeStarted ? 'animate-ground-shake' : ''}`}
+                          style={{
+                            animationDelay: `${i * 0.1}s`
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="inline-block p-8 bg-[hsl(var(--card))] rounded-2xl border-2 border-[hsl(var(--gold))] shadow-[var(--shadow-dramatic)] relative overflow-hidden">
+                    {/* Cracks appear during earthquake */}
+                    {earthquakeStarted && (
+                      <>
+                        <div className="absolute top-0 left-1/4 w-0.5 h-full bg-[hsl(var(--crack))] opacity-60 transform -rotate-12" />
+                        <div className="absolute top-1/2 left-0 w-full h-0.5 bg-[hsl(var(--crack))] opacity-60" />
+                      </>
+                    )}
+                    
+                    <h2 className={`text-6xl md:text-8xl font-black bg-gradient-to-r from-[hsl(var(--gold))] via-[hsl(var(--gold-glow))] to-[hsl(var(--gold))] bg-clip-text text-transparent ${!earthquakeStarted ? 'animate-shimmer' : ''} bg-[length:200%_auto]`}>
+                      Welcome!
+                    </h2>
+                  </div>
                 </div>
 
                 <div className="space-y-4 text-[hsl(var(--foreground))]">
-                  <h3 className="text-3xl md:text-4xl font-bold">
+                  <h3 className="text-4xl md:text-5xl font-bold leading-tight">
                     18th Symposium on Earthquake Engineering
                   </h3>
                   <p className="text-lg md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto">

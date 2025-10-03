@@ -28,7 +28,7 @@ const Index = () => {
 
   const handleVisitWebsite = () => {
     // Replace with actual symposium website URL
-    window.open("https://earthquake-symposium.example.com", "_blank");
+    window.open("https://iitr.ac.in/18see/", "_blank");
   };
 
   return (

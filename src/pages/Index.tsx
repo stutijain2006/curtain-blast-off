@@ -259,25 +259,45 @@ const Index = () => {
           {/* Revealed Content - After Opening */}
           {showContent && (
             <div className={`relative z-10 text-center space-y-8 max-w-4xl px-6 ${grandFinale ? 'animate-zoom-out' : 'animate-fade-in-scale'}`}>
-              {/* Striking Stone */}
-              {stoneStrike && (
-                <div className="absolute -top-32 left-1/2 -translate-x-1/2 z-50">
-                  <div className="w-16 h-16 bg-gradient-to-br from-[hsl(var(--rock-light))] to-[hsl(var(--rock-gray))] rounded-lg animate-stone-strike shadow-2xl transform rotate-45" 
-                    style={{
-                      clipPath: "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)"
-                    }}
-                  />
-                  {/* Impact Ripple */}
-                  {earthquakeStarted && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-32 h-32 border-4 border-[hsl(var(--gold)/0.6)] rounded-full animate-ripple" />
-                  )}
-                </div>
-              )}
-
               <div className={`space-y-6 ${earthquakeStarted ? 'animate-earthquake-wave' : ''}`}>
                 {/* Ground/Soil Base */}
                 <div className="relative inline-block">
-                  <div className="absolute -bottom-4 left-0 right-0 h-8 bg-gradient-to-b from-[hsl(var(--earth-brown))] to-[hsl(var(--earth-dark))] rounded-lg overflow-hidden"
+                  {/* Striking Stone - positioned above the soil */}
+                  {stoneStrike && (
+                    <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 z-50">
+                      <div className="w-20 h-20 bg-gradient-to-br from-[hsl(var(--rock-light))] to-[hsl(var(--rock-gray))] animate-stone-strike shadow-2xl" 
+                        style={{
+                          clipPath: "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)",
+                          filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.5))"
+                        }}
+                      />
+                      {/* Impact Ripple on ground */}
+                      {earthquakeStarted && (
+                        <>
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 w-40 h-40 border-4 border-[hsl(var(--rock-gray)/0.6)] rounded-full animate-ripple" />
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 w-40 h-40 border-4 border-[hsl(var(--earth-brown)/0.4)] rounded-full animate-ripple" style={{ animationDelay: "0.2s" }} />
+                        </>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="inline-block p-8 bg-gradient-to-b from-[hsl(var(--card))] to-[hsl(var(--earth-dark)/0.3)] rounded-2xl border-2 border-[hsl(var(--earth-brown))] shadow-[var(--shadow-dramatic)] relative overflow-hidden">
+                    {/* Cracks appear during earthquake */}
+                    {earthquakeStarted && (
+                      <>
+                        <div className="absolute top-0 left-1/4 w-0.5 h-full bg-[hsl(var(--crack))] opacity-60 transform -rotate-12" />
+                        <div className="absolute top-1/2 left-0 w-full h-0.5 bg-[hsl(var(--crack))] opacity-60" />
+                        <div className="absolute top-1/3 right-1/4 w-0.5 h-2/3 bg-[hsl(var(--crack))] opacity-40 transform rotate-6" />
+                      </>
+                    )}
+                    
+                    <h2 className="text-6xl md:text-8xl font-black text-[hsl(var(--foreground))] drop-shadow-lg">
+                      Welcome!
+                    </h2>
+                  </div>
+
+                  {/* Soil/Ground Base - below the card */}
+                  <div className="absolute -bottom-6 left-0 right-0 h-12 bg-gradient-to-b from-[hsl(var(--earth-brown))] to-[hsl(var(--earth-dark))] rounded-b-lg overflow-hidden shadow-xl"
                     style={{
                       backgroundImage: `
                         repeating-linear-gradient(90deg, 
@@ -292,36 +312,23 @@ const Index = () => {
                     }}
                   >
                     {/* Rock particles in soil */}
-                    <div className="absolute inset-0 flex items-center justify-around px-2">
-                      {[...Array(8)].map((_, i) => (
+                    <div className="absolute inset-0 flex items-center justify-around px-4">
+                      {[...Array(12)].map((_, i) => (
                         <div
                           key={i}
-                          className={`w-2 h-2 bg-[hsl(var(--rock-gray))] rounded-sm ${earthquakeStarted ? 'animate-ground-shake' : ''}`}
+                          className={`w-3 h-3 bg-[hsl(var(--rock-gray))] rounded-sm ${earthquakeStarted ? 'animate-ground-shake' : ''}`}
                           style={{
-                            animationDelay: `${i * 0.1}s`
+                            animationDelay: `${i * 0.1}s`,
+                            opacity: 0.7
                           }}
                         />
                       ))}
                     </div>
                   </div>
-                  
-                  <div className="inline-block p-8 bg-[hsl(var(--card))] rounded-2xl border-2 border-[hsl(var(--gold))] shadow-[var(--shadow-dramatic)] relative overflow-hidden">
-                    {/* Cracks appear during earthquake */}
-                    {earthquakeStarted && (
-                      <>
-                        <div className="absolute top-0 left-1/4 w-0.5 h-full bg-[hsl(var(--crack))] opacity-60 transform -rotate-12" />
-                        <div className="absolute top-1/2 left-0 w-full h-0.5 bg-[hsl(var(--crack))] opacity-60" />
-                      </>
-                    )}
-                    
-                    <h2 className={`text-6xl md:text-8xl font-black bg-gradient-to-r from-[hsl(var(--gold))] via-[hsl(var(--gold-glow))] to-[hsl(var(--gold))] bg-clip-text text-transparent ${!earthquakeStarted ? 'animate-shimmer' : ''} bg-[length:200%_auto]`}>
-                      Welcome!
-                    </h2>
-                  </div>
                 </div>
 
-                <div className="space-y-4 text-[hsl(var(--foreground))]">
-                  <h3 className="text-4xl md:text-5xl font-bold leading-tight">
+                <div className="space-y-4 text-[hsl(var(--foreground))] pt-8">
+                  <h3 className="text-4xl md:text-5xl font-bold leading-tight text-[hsl(var(--earth-brown))]">
                     18th Symposium on Earthquake Engineering
                   </h3>
                   <p className="text-lg md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto">
@@ -332,7 +339,7 @@ const Index = () => {
 
                 {grandFinale && (
                   <div className="pt-8">
-                    <Sparkles className="w-20 h-20 mx-auto text-[hsl(var(--gold))] animate-spin" />
+                    <Sparkles className="w-20 h-20 mx-auto text-[hsl(var(--rock-gray))] animate-spin" />
                   </div>
                 )}
               </div>

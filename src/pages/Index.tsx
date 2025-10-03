@@ -32,7 +32,7 @@ const Index = () => {
       setTimeout(() => {
         setGrandFinale(true);
         setTimeout(() => {
-          window.location.href = "https://earthquake-symposium.example.com";
+          window.location.href = "https://iitr.ac.in/18see/";
         }, 2000); // Redirect after finale animation
       }, 3000); // Wait 3 seconds after welcome message
     }

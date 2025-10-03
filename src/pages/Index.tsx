@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Sparkles, ExternalLink } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Sparkles } from "lucide-react";
 
 const Index = () => {
   const [ceremonyClosed, setCeremonyClosed] = useState(true);
@@ -26,10 +25,14 @@ const Index = () => {
     }
   };
 
-  const handleVisitWebsite = () => {
-    // Replace with actual symposium website URL
-    window.open("https://earthquake-symposium.example.com", "_blank");
-  };
+  // Auto redirect after welcome message appears
+  useEffect(() => {
+    if (showContent) {
+      setTimeout(() => {
+        window.location.href = "https://earthquake-symposium.example.com";
+      }, 3500); // Wait 3.5 seconds after welcome message appears
+    }
+  }, [showContent]);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[hsl(var(--stage))]">
@@ -234,25 +237,11 @@ const Index = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                  <Button
-                    onClick={handleVisitWebsite}
-                    size="lg"
-                    className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))] hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] text-white transition-all duration-300 text-lg px-8 py-6 font-bold group"
-                  >
-                    Visit Main Website
-                    <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
-
                 <div className="pt-6 space-y-2">
                   <div className="flex items-center justify-center gap-8 text-[hsl(var(--muted-foreground))]">
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full bg-[hsl(var(--gold))] animate-pulse-glow" />
-                      <span className="text-sm">Live Event</span>
-                    </div>
-                    <div className="text-sm font-semibold text-[hsl(var(--gold))]">
-                      Symposium 2025
+                      <span className="text-sm">Redirecting to main website...</span>
                     </div>
                   </div>
                 </div>

@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Sparkles, ExternalLink } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Sparkles } from "lucide-react";
 
 const Index = () => {
   const [ceremonyClosed, setCeremonyClosed] = useState(true);
   const [showContent, setShowContent] = useState(false);
   const [leftRopePulled, setLeftRopePulled] = useState(false);
   const [rightRopePulled, setRightRopePulled] = useState(false);
+  const [grandFinale, setGrandFinale] = useState(false);
 
   const handleRopePull = (side: "left" | "right") => {
     if (side === "left") {
@@ -26,10 +26,17 @@ const Index = () => {
     }
   };
 
-  const handleVisitWebsite = () => {
-    // Replace with actual symposium website URL
-    window.open("https://iitr.ac.in/18see/", "_blank");
-  };
+  // Auto redirect with grand finale animation
+  useEffect(() => {
+    if (showContent) {
+      setTimeout(() => {
+        setGrandFinale(true);
+        setTimeout(() => {
+          window.location.href = "https://iitr.ac.in/18see/";
+        }, 2000); // Redirect after finale animation
+      }, 3000); // Wait 3 seconds after welcome message
+    }
+  }, [showContent]);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[hsl(var(--stage))]">
@@ -48,6 +55,30 @@ const Index = () => {
           />
         ))}
       </div>
+
+      {/* Grand Finale Confetti */}
+      {grandFinale && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-50">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-3 h-3 rounded-full animate-fade-in"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: '-20px',
+                backgroundColor: ['hsl(var(--gold))', 'hsl(var(--gold-glow))', 'hsl(var(--primary))', 'hsl(var(--spotlight))'][Math.floor(Math.random() * 4)],
+                animation: `confetti-fall ${2 + Math.random() * 2}s linear forwards`,
+                animationDelay: `${Math.random() * 0.5}s`,
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Grand Finale Flash */}
+      {grandFinale && (
+        <div className="absolute inset-0 bg-white pointer-events-none z-40 animate-flash" />
+      )}
 
       {/* Spotlight Effects */}
       <div className="absolute inset-0 pointer-events-none">
@@ -216,7 +247,7 @@ const Index = () => {
 
           {/* Revealed Content - After Opening */}
           {showContent && (
-            <div className="relative z-10 text-center space-y-8 max-w-3xl px-6 animate-fade-in-scale">
+            <div className={`relative z-10 text-center space-y-8 max-w-3xl px-6 ${grandFinale ? 'animate-zoom-out' : 'animate-fade-in-scale'}`}>
               <div className="space-y-6">
                 <div className="inline-block p-6 bg-[hsl(var(--card))] rounded-2xl border-2 border-[hsl(var(--gold))] shadow-[var(--shadow-dramatic)]">
                   <h2 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-[hsl(var(--gold))] via-[hsl(var(--gold-glow))] to-[hsl(var(--gold))] bg-clip-text text-transparent animate-shimmer bg-[length:200%_auto]">
@@ -234,28 +265,11 @@ const Index = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                  <Button
-                    onClick={handleVisitWebsite}
-                    size="lg"
-                    className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))] hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] text-white transition-all duration-300 text-lg px-8 py-6 font-bold group"
-                  >
-                    Visit Main Website
-                    <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
-
-                <div className="pt-6 space-y-2">
-                  <div className="flex items-center justify-center gap-8 text-[hsl(var(--muted-foreground))]">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-[hsl(var(--gold))] animate-pulse-glow" />
-                      <span className="text-sm">Live Event</span>
-                    </div>
-                    <div className="text-sm font-semibold text-[hsl(var(--gold))]">
-                      Symposium 2025
-                    </div>
+                {grandFinale && (
+                  <div className="pt-8">
+                    <Sparkles className="w-20 h-20 mx-auto text-[hsl(var(--gold))] animate-spin" />
                   </div>
-                </div>
+                )}
               </div>
             </div>
           )}

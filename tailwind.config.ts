@@ -72,6 +72,22 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "confetti-fall": {
+          "0%": { transform: "translateY(0) rotate(0deg)", opacity: "1" },
+          "100%": { transform: "translateY(100vh) rotate(720deg)", opacity: "0" },
+        },
+        "flash": {
+          "0%": { opacity: "0" },
+          "10%": { opacity: "0.8" },
+          "20%": { opacity: "0" },
+          "30%": { opacity: "0.6" },
+          "40%": { opacity: "0" },
+          "100%": { opacity: "0" },
+        },
+        "zoom-out": {
+          "0%": { transform: "scale(1)", opacity: "1" },
+          "100%": { transform: "scale(2)", opacity: "0" },
+        },
         "curtain-open-left": {
           "0%": { transform: "translateX(0) scaleX(1)" },
           "100%": { transform: "translateX(-100%) scaleX(0.3)" },
@@ -118,6 +134,8 @@ export default {
         "shimmer": "shimmer 3s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "particle-float": "particle-float 8s ease-in-out infinite",
+        "flash": "flash 2s ease-out",
+        "zoom-out": "zoom-out 2s ease-in forwards",
       },
     },
   },

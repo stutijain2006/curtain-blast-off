@@ -122,16 +122,29 @@ export default {
           "90%": { opacity: "1" },
           "100%": { transform: "translateY(-100vh) translateX(50px) scale(1)", opacity: "0" },
         },
-        "ripple-from-left": {
+        "ripple-from-left-fast": {
           "0%": {
-            transform: "translateX(0) scale(0.5)",
+            transform: "translateX(0) scaleX(0.3) scaleY(0.5)",
             opacity: "0"
           },
-          "50%": {
-            opacity: "0.8"
+          "20%": {
+            opacity: "0.9"
           },
           "100%": {
-            transform: "translateX(600px) scale(2)",
+            transform: "translateX(700px) scaleX(3) scaleY(1.5)",
+            opacity: "0"
+          }
+        },
+        "ripple-from-left-slow": {
+          "0%": {
+            transform: "translateX(0) scaleX(0.3) scaleY(0.5)",
+            opacity: "0"
+          },
+          "20%": {
+            opacity: "0.9"
+          },
+          "100%": {
+            transform: "translateX(700px) scaleX(3.5) scaleY(2)",
             opacity: "0"
           }
         },

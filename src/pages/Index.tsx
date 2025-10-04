@@ -265,24 +265,28 @@ const Index = () => {
           {showContent && (
             <div className={`relative z-10 text-center space-y-8 max-w-4xl px-6 ${grandFinale ? 'animate-zoom-out' : 'animate-fade-in-scale'}`}>
               <div className="space-y-6">
-                {/* Ripple Waves from Left - Only 2 waves */}
+                {/* Earthquake Waves from Left - Elliptical realistic waves */}
                 {ripplesStarted && (
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none">
-                    {/* Fast wave */}
+                    {/* Fast wave - smaller ellipse */}
                     <div
-                      className="absolute top-0 left-0 border-4 border-[hsl(var(--earth-brown))] rounded-full animate-ripple-from-left-fast"
+                      className="absolute top-0 left-0 border-[6px] border-[hsl(var(--earth-brown))] animate-ripple-from-left-fast"
                       style={{
-                        width: '100px',
-                        height: '100px',
-                        opacity: 0.8,
+                        width: '80px',
+                        height: '120px',
+                        borderRadius: '50%',
+                        transformOrigin: 'left center',
+                        opacity: 0.85,
                       }}
                     />
-                    {/* Slow wave */}
+                    {/* Slow wave - larger ellipse */}
                     <div
-                      className="absolute top-0 left-0 border-[5px] border-[hsl(var(--earth-brown))] rounded-full animate-ripple-from-left-slow"
+                      className="absolute top-0 left-0 border-[7px] border-[hsl(var(--earth-brown))] animate-ripple-from-left-slow"
                       style={{
-                        width: '120px',
-                        height: '120px',
+                        width: '100px',
+                        height: '150px',
+                        borderRadius: '50%',
+                        transformOrigin: 'left center',
                         opacity: 0.9,
                       }}
                     />

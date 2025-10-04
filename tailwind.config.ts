@@ -122,37 +122,40 @@ export default {
           "90%": { opacity: "1" },
           "100%": { transform: "translateY(-100vh) translateX(50px) scale(1)", opacity: "0" },
         },
-        "earthquake-wave": {
-          "0%": { transform: "translateX(0) translateY(0) rotate(0deg)" },
-          "10%": { transform: "translateX(-10px) translateY(-5px) rotate(-2deg)" },
-          "20%": { transform: "translateX(10px) translateY(5px) rotate(2deg)" },
-          "30%": { transform: "translateX(-8px) translateY(-3px) rotate(-1.5deg)" },
-          "40%": { transform: "translateX(8px) translateY(3px) rotate(1.5deg)" },
-          "50%": { transform: "translateX(-6px) translateY(-2px) rotate(-1deg)" },
-          "60%": { transform: "translateX(6px) translateY(2px) rotate(1deg)" },
-          "70%": { transform: "translateX(-4px) translateY(-1px) rotate(-0.5deg)" },
-          "80%": { transform: "translateX(4px) translateY(1px) rotate(0.5deg)" },
-          "90%": { transform: "translateX(-2px) translateY(0px) rotate(-0.2deg)" },
-          "100%": { transform: "translateX(0) translateY(0) rotate(0deg)" },
+        "ripple-from-left": {
+          "0%": {
+            transform: "translateX(0) scale(0.5)",
+            opacity: "0"
+          },
+          "50%": {
+            opacity: "0.8"
+          },
+          "100%": {
+            transform: "translateX(600px) scale(2)",
+            opacity: "0"
+          }
         },
-        "stone-strike": {
-          "0%": { transform: "translateY(-200px) translateX(-100px) rotate(-45deg)", opacity: "0" },
-          "50%": { transform: "translateY(0) translateX(0) rotate(0deg)", opacity: "1" },
-          "70%": { transform: "translateY(-20px) translateX(10px) rotate(5deg)", opacity: "1" },
-          "100%": { transform: "translateY(0) translateX(0) rotate(0deg)", opacity: "0.8" },
+        "earthquake-shake": {
+          "0%, 100%": { transform: "translateX(0) rotate(0deg)" },
+          "10%": { transform: "translateX(-10px) rotate(-1deg)" },
+          "20%": { transform: "translateX(10px) rotate(1deg)" },
+          "30%": { transform: "translateX(-10px) rotate(-1deg)" },
+          "40%": { transform: "translateX(10px) rotate(1deg)" },
+          "50%": { transform: "translateX(-8px) rotate(-0.5deg)" },
+          "60%": { transform: "translateX(8px) rotate(0.5deg)" },
+          "70%": { transform: "translateX(-5px) rotate(-0.5deg)" },
+          "80%": { transform: "translateX(5px) rotate(0.5deg)" },
+          "90%": { transform: "translateX(-3px) rotate(-0.2deg)" }
         },
-        "ground-shake": {
-          "0%, 100%": { transform: "translateX(0)" },
-          "10%, 30%, 50%, 70%, 90%": { transform: "translateX(-3px)" },
-          "20%, 40%, 60%, 80%": { transform: "translateX(3px)" },
-        },
-        "wave-text": {
-          "0%": { transform: "translateY(0) scaleY(1)" },
-          "100%": { transform: "translateY(0) scaleY(1)" },
-        },
-        "ripple": {
-          "0%": { transform: "scale(0.8)", opacity: "0.8" },
-          "100%": { transform: "scale(2)", opacity: "0" },
+        "enlarge": {
+          "0%": {
+            transform: "scale(1)",
+            opacity: "1"
+          },
+          "100%": {
+            transform: "scale(1.5)",
+            opacity: "0.8"
+          }
         },
       },
       animation: {
@@ -168,10 +171,9 @@ export default {
         "particle-float": "particle-float 8s ease-in-out infinite",
         "flash": "flash 2s ease-out",
         "zoom-out": "zoom-out 2s ease-in forwards",
-        "earthquake-wave": "earthquake-wave 6s ease-in-out forwards",
-        "stone-strike": "stone-strike 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
-        "ground-shake": "ground-shake 0.5s ease-in-out infinite",
-        "ripple": "ripple 1.5s ease-out forwards",
+        "ripple-from-left": "ripple-from-left 2s ease-out forwards",
+        "earthquake-shake": "earthquake-shake 0.3s ease-in-out infinite",
+        "enlarge": "enlarge 2s ease-out forwards",
       },
     },
   },

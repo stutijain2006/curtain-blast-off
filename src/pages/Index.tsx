@@ -6,8 +6,8 @@ const Index = () => {
   const [showContent, setShowContent] = useState(false);
   const [leftRopePulled, setLeftRopePulled] = useState(false);
   const [rightRopePulled, setRightRopePulled] = useState(false);
-  const [earthquakeStarted, setEarthquakeStarted] = useState(false);
-  const [stoneStrike, setStoneStrike] = useState(false);
+  const [ripplesStarted, setRipplesStarted] = useState(false);
+  const [shakeStarted, setShakeStarted] = useState(false);
   const [grandFinale, setGrandFinale] = useState(false);
 
   const handleRopePull = (side: "left" | "right") => {
@@ -28,24 +28,24 @@ const Index = () => {
     }
   };
 
-  // Earthquake animation sequence
+  // Ripple and shake animation sequence
   useEffect(() => {
     if (showContent) {
-      // Wait 2 seconds after curtain rises, then trigger stone strike
+      // Start ripples from left
       setTimeout(() => {
-        setStoneStrike(true);
-        // Start earthquake wave immediately after stone strike
+        setRipplesStarted(true);
+        // When ripples reach middle, start shaking
         setTimeout(() => {
-          setEarthquakeStarted(true);
-          // After 7 seconds of earthquake, show grand finale
+          setShakeStarted(true);
+          // After 4 seconds of shaking, enlarge and redirect
           setTimeout(() => {
             setGrandFinale(true);
             setTimeout(() => {
               window.location.href = "https://iitr.ac.in/18see/";
             }, 2000);
-          }, 7000);
-        }, 1500);
-      }, 2000);
+          }, 4000);
+        }, 2000);
+      }, 1000);
     }
   }, [showContent]);
 
@@ -259,31 +259,32 @@ const Index = () => {
           {/* Revealed Content - After Opening */}
           {showContent && (
             <div className={`relative z-10 text-center space-y-8 max-w-4xl px-6 ${grandFinale ? 'animate-zoom-out' : 'animate-fade-in-scale'}`}>
-              <div className={`space-y-6 ${earthquakeStarted ? 'animate-earthquake-wave' : ''}`}>
-                {/* Ground/Soil Base */}
-                <div className="relative inline-block">
-                  {/* Striking Stone - positioned above the soil */}
-                  {stoneStrike && (
-                    <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 z-50">
-                      <div className="w-20 h-20 bg-gradient-to-br from-[hsl(var(--rock-light))] to-[hsl(var(--rock-gray))] animate-stone-strike shadow-2xl" 
+              <div className="space-y-6">
+                {/* Ripple Waves from Left */}
+                {ripplesStarted && (
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none">
+                    {[...Array(6)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute top-0 left-0 border-4 border-[hsl(var(--earth-brown))] rounded-full animate-ripple-from-left"
                         style={{
-                          clipPath: "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)",
-                          filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.5))"
+                          width: `${100 + i * 80}px`,
+                          height: `${100 + i * 80}px`,
+                          animationDelay: `${i * 0.3}s`,
+                          opacity: 0.7 - i * 0.1,
                         }}
                       />
-                      {/* Impact Ripple on ground */}
-                      {earthquakeStarted && (
-                        <>
-                          <div className="absolute top-full left-1/2 -translate-x-1/2 w-40 h-40 border-4 border-[hsl(var(--rock-gray)/0.6)] rounded-full animate-ripple" />
-                          <div className="absolute top-full left-1/2 -translate-x-1/2 w-40 h-40 border-4 border-[hsl(var(--earth-brown)/0.4)] rounded-full animate-ripple" style={{ animationDelay: "0.2s" }} />
-                        </>
-                      )}
-                    </div>
-                  )}
+                    ))}
+                  </div>
+                )}
 
-                  <div className="inline-block p-8 bg-gradient-to-b from-[hsl(var(--card))] to-[hsl(var(--earth-dark)/0.3)] rounded-2xl border-2 border-[hsl(var(--earth-brown))] shadow-[var(--shadow-dramatic)] relative overflow-hidden">
-                    {/* Cracks appear during earthquake */}
-                    {earthquakeStarted && (
+                {/* Ground/Soil Base */}
+                <div className="relative inline-block">
+                  <div className={`inline-block p-8 bg-gradient-to-b from-[hsl(var(--card))] to-[hsl(var(--earth-dark)/0.3)] rounded-2xl border-2 border-[hsl(var(--earth-brown))] shadow-[var(--shadow-dramatic)] relative overflow-hidden ${
+                    shakeStarted ? 'animate-earthquake-shake' : ''
+                  } ${grandFinale ? 'animate-enlarge' : ''}`}>
+                    {/* Cracks appear during shake */}
+                    {shakeStarted && (
                       <>
                         <div className="absolute top-0 left-1/4 w-0.5 h-full bg-[hsl(var(--crack))] opacity-60 transform -rotate-12" />
                         <div className="absolute top-1/2 left-0 w-full h-0.5 bg-[hsl(var(--crack))] opacity-60" />
@@ -310,21 +311,7 @@ const Index = () => {
                           transparent 2px)
                       `
                     }}
-                  >
-                    {/* Rock particles in soil */}
-                    <div className="absolute inset-0 flex items-center justify-around px-4">
-                      {[...Array(12)].map((_, i) => (
-                        <div
-                          key={i}
-                          className={`w-3 h-3 bg-[hsl(var(--rock-gray))] rounded-sm ${earthquakeStarted ? 'animate-ground-shake' : ''}`}
-                          style={{
-                            animationDelay: `${i * 0.1}s`,
-                            opacity: 0.7
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
+                  />
                 </div>
 
                 <div className="space-y-4 text-[hsl(var(--foreground))] pt-8">

@@ -265,29 +265,29 @@ const Index = () => {
           {showContent && (
             <div className={`relative z-10 text-center space-y-8 max-w-4xl px-6 ${grandFinale ? 'animate-zoom-out' : 'animate-fade-in-scale'}`}>
               <div className="space-y-6">
-                {/* Earthquake Waves from Left - Elliptical realistic waves */}
+                {/* Earthquake Waves from Left - Dynamic expanding waves */}
                 {ripplesStarted && (
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none">
-                    {/* Fast wave - smaller ellipse */}
+                    {/* Fast wave - grows and elongates */}
                     <div
-                      className="absolute top-0 left-0 border-[6px] border-[hsl(var(--earth-brown))] animate-ripple-from-left-fast"
+                      className="absolute top-0 left-0 border-[5px] border-[hsl(var(--earth-brown))] animate-ripple-from-left-fast"
                       style={{
-                        width: '80px',
+                        width: '60px',
+                        height: '100px',
+                        borderRadius: '50%',
+                        transformOrigin: 'left center',
+                        opacity: 0.6,
+                      }}
+                    />
+                    {/* Slow wave - grows and elongates more */}
+                    <div
+                      className="absolute top-0 left-0 border-[6px] border-[hsl(var(--earth-brown))] animate-ripple-from-left-slow"
+                      style={{
+                        width: '70px',
                         height: '120px',
                         borderRadius: '50%',
                         transformOrigin: 'left center',
-                        opacity: 0.85,
-                      }}
-                    />
-                    {/* Slow wave - larger ellipse */}
-                    <div
-                      className="absolute top-0 left-0 border-[7px] border-[hsl(var(--earth-brown))] animate-ripple-from-left-slow"
-                      style={{
-                        width: '100px',
-                        height: '150px',
-                        borderRadius: '50%',
-                        transformOrigin: 'left center',
-                        opacity: 0.9,
+                        opacity: 0.65,
                       }}
                     />
                   </div>

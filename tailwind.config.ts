@@ -124,27 +124,43 @@ export default {
         },
         "ripple-from-left-fast": {
           "0%": {
-            transform: "translateX(0) scaleX(0.3) scaleY(0.5)",
+            transform: "translateX(0) scaleX(0.2) scaleY(0.3)",
             opacity: "0"
           },
-          "20%": {
-            opacity: "0.9"
+          "15%": {
+            opacity: "0.5"
+          },
+          "40%": {
+            transform: "translateX(300px) scaleX(1.5) scaleY(1)",
+            opacity: "0.4"
+          },
+          "70%": {
+            transform: "translateX(500px) scaleX(3) scaleY(1.5)",
+            opacity: "0.25"
           },
           "100%": {
-            transform: "translateX(700px) scaleX(3) scaleY(1.5)",
+            transform: "translateX(700px) scaleX(5) scaleY(2)",
             opacity: "0"
           }
         },
         "ripple-from-left-slow": {
           "0%": {
-            transform: "translateX(0) scaleX(0.3) scaleY(0.5)",
+            transform: "translateX(0) scaleX(0.25) scaleY(0.4)",
             opacity: "0"
           },
-          "20%": {
-            opacity: "0.9"
+          "15%": {
+            opacity: "0.6"
+          },
+          "40%": {
+            transform: "translateX(250px) scaleX(1.8) scaleY(1.2)",
+            opacity: "0.5"
+          },
+          "70%": {
+            transform: "translateX(450px) scaleX(3.5) scaleY(1.8)",
+            opacity: "0.3"
           },
           "100%": {
-            transform: "translateX(700px) scaleX(3.5) scaleY(2)",
+            transform: "translateX(700px) scaleX(6) scaleY(2.5)",
             opacity: "0"
           }
         },

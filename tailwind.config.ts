@@ -124,43 +124,87 @@ export default {
         },
         "ripple-from-left-fast": {
           "0%": {
-            transform: "translateX(0) scaleX(0.2) scaleY(0.3)",
-            opacity: "0"
+            transform: "translateX(0) scale(0.5, 0.5)",
+            opacity: "0.8"
           },
-          "15%": {
-            opacity: "0.5"
-          },
-          "40%": {
-            transform: "translateX(300px) scaleX(1.5) scaleY(1)",
-            opacity: "0.4"
-          },
-          "70%": {
-            transform: "translateX(500px) scaleX(3) scaleY(1.5)",
-            opacity: "0.25"
+          "50%": {
+            opacity: "0.7"
           },
           "100%": {
-            transform: "translateX(700px) scaleX(5) scaleY(2)",
-            opacity: "0"
+            transform: "translateX(50vw) scale(2, 1.2)",
+            opacity: "0.3"
           }
         },
         "ripple-from-left-slow": {
           "0%": {
-            transform: "translateX(0) scaleX(0.25) scaleY(0.4)",
-            opacity: "0"
+            transform: "translateX(0) scale(0.6, 0.6)",
+            opacity: "0.8"
           },
-          "15%": {
+          "50%": {
             opacity: "0.6"
           },
+          "100%": {
+            transform: "translateX(50vw) scale(2.5,1.5)",
+            opacity: "0.35"
+          }
+        },
+        "ripple-propagate-fast": {
+          "0%": {
+            transform: "translateX(0) scale(0.7,0.7)",
+            opacity: "0.9"
+          },
           "40%": {
-            transform: "translateX(250px) scaleX(1.8) scaleY(1.2)",
-            opacity: "0.5"
+            opacity: "0.8"
           },
           "70%": {
-            transform: "translateX(450px) scaleX(3.5) scaleY(1.8)",
-            opacity: "0.3"
+            transform: "translateX(45vw) scale(1.5,1.2)", /* at center */
+            opacity: "0.6"
           },
           "100%": {
-            transform: "translateX(700px) scaleX(6) scaleY(2.5)",
+            transform: "translateX(90vw) scale(2,1.4)",  /* exit right */
+            opacity: "0.2"
+          }
+        },
+        "ripple-propagate-slow": {
+          "0%": {
+            transform: "translateX(0) scale(0.8,0.8)",
+            opacity: "0.9"
+          },
+          "40%": {
+            opacity: "0.7"
+          },
+          "70%": {
+            transform: "translateX(45vw) scale(2,1.5)", /* at center */
+            opacity: "0.6"
+          },
+          "100%": {
+            transform: "translateX(90vw) scale(3,1.8)",  /* exit right */
+            opacity: "0.25"
+          }
+        },
+        "wave-ripple": {
+          "0%": {
+            transform: "scale(0.8)",
+            opacity: "0.8"
+          },
+          "20%": {
+            transform: "scale(1.1)",
+            opacity: "0.7"
+          },
+          "40%": {
+            transform: "scale(1.4)",
+            opacity: "0.5"
+          },
+          "60%": {
+            transform: "scale(1.7)",
+            opacity: "0.3"
+          },
+          "80%": {
+            transform: "scale(2)",
+            opacity: "0.15"
+          },
+          "100%": {
+            transform: "scale(2.3)",
             opacity: "0"
           }
         },
@@ -219,10 +263,13 @@ export default {
         "particle-float": "particle-float 8s ease-in-out infinite",
         "flash": "flash 2s ease-out",
         "zoom-out": "zoom-out 2s ease-in forwards",
-        "ripple-from-left-fast": "ripple-from-left 1.5s ease-out forwards",
-        "ripple-from-left-slow": "ripple-from-left 3s ease-out forwards",
+        "ripple-from-left-fast": "ripple-from-left-fast 1.5s ease-out forwards",
+        "ripple-from-left-slow": "ripple-from-left-slow 3s ease-out forwards",
         "earthquake-shake-slow": "earthquake-shake-slow 0.8s ease-in-out infinite",
         "earthquake-shake-fast": "earthquake-shake-fast 0.3s ease-in-out infinite",
+        "ripple-fast": "ripple-propagate-fast 3s ease-out forwards",
+        "ripple-slow": "ripple-propagate-slow 5s ease-out forwards",
+        "wave-ripple": "wave-ripple 10s ease-out forwards",
         "enlarge": "enlarge 2s ease-out forwards",
       },
     },

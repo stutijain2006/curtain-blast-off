@@ -104,18 +104,17 @@ const Index = () => {
 
       {/* Stage */}
       <div className="relative min-h-screen flex flex-col items-center justify-center px-4">
-        
+
         {/* Curtains Container */}
         <div className="relative w-full max-w-6xl aspect-video flex items-center justify-center">
-          
+
           {/* Curtain Rod */}
           <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-[hsl(var(--gold))] to-[hsl(var(--gold-glow))] shadow-lg z-20" />
-          
+
           {/* Left Curtain */}
           <div
-            className={`absolute top-0 left-0 w-1/2 h-full bg-gradient-to-b from-[hsl(var(--curtain))] to-[hsl(var(--curtain-shadow))] shadow-[var(--shadow-curtain)] transition-all duration-[4s] ease-in-out ${
-              !ceremonyClosed ? "animate-curtain-open-left" : ""
-            }`}
+            className={`absolute top-0 left-0 w-1/2 h-full bg-gradient-to-b from-[hsl(var(--curtain))] to-[hsl(var(--curtain-shadow))] shadow-[var(--shadow-curtain)] transition-all duration-[4s] ease-in-out ${!ceremonyClosed ? "animate-curtain-open-left" : ""
+              }`}
             style={{
               backgroundImage: "repeating-linear-gradient(90deg, transparent, transparent 40px, hsl(var(--curtain-shadow)) 40px, hsl(var(--curtain-shadow)) 41px)",
               transformOrigin: "top right",
@@ -128,9 +127,8 @@ const Index = () => {
 
           {/* Right Curtain */}
           <div
-            className={`absolute top-0 right-0 w-1/2 h-full bg-gradient-to-b from-[hsl(var(--curtain))] to-[hsl(var(--curtain-shadow))] shadow-[var(--shadow-curtain)] transition-all duration-[4s] ease-in-out ${
-              !ceremonyClosed ? "animate-curtain-open-right" : ""
-            }`}
+            className={`absolute top-0 right-0 w-1/2 h-full bg-gradient-to-b from-[hsl(var(--curtain))] to-[hsl(var(--curtain-shadow))] shadow-[var(--shadow-curtain)] transition-all duration-[4s] ease-in-out ${!ceremonyClosed ? "animate-curtain-open-right" : ""
+              }`}
             style={{
               backgroundImage: "repeating-linear-gradient(90deg, transparent, transparent 40px, hsl(var(--curtain-shadow)) 40px, hsl(var(--curtain-shadow)) 41px)",
               transformOrigin: "top left",
@@ -146,9 +144,8 @@ const Index = () => {
             <button
               onClick={() => handleRopePull("left")}
               disabled={leftRopePulled}
-              className={`absolute left-[8%] top-0 z-30 group cursor-pointer disabled:cursor-not-allowed transition-all duration-300 ${
-                leftRopePulled ? "opacity-50" : "hover:scale-105"
-              }`}
+              className={`absolute left-[8%] top-0 z-30 group cursor-pointer disabled:cursor-not-allowed transition-all duration-300 ${leftRopePulled ? "opacity-50" : "hover:scale-105"
+                }`}
               aria-label="Pull left curtain rope"
             >
               {/* Rope */}
@@ -160,7 +157,7 @@ const Index = () => {
                 {/* Shine effect */}
                 <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-white/40 via-transparent to-transparent rounded-l-full" />
               </div>
-              
+
               {/* Tassel */}
               <div className="relative w-16 h-20 -mt-2" style={{ marginLeft: '-26px' }}>
                 {/* Tassel top */}
@@ -178,7 +175,7 @@ const Index = () => {
                   ))}
                 </div>
               </div>
-              
+
               {!leftRopePulled && (
                 <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-[hsl(var(--gold))] text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
                   Pull to Open
@@ -197,9 +194,8 @@ const Index = () => {
             <button
               onClick={() => handleRopePull("right")}
               disabled={rightRopePulled}
-              className={`absolute right-[8%] top-0 z-30 group cursor-pointer disabled:cursor-not-allowed transition-all duration-300 ${
-                rightRopePulled ? "opacity-50" : "hover:scale-105"
-              }`}
+              className={`absolute right-[8%] top-0 z-30 group cursor-pointer disabled:cursor-not-allowed transition-all duration-300 ${rightRopePulled ? "opacity-50" : "hover:scale-105"
+                }`}
               aria-label="Pull right curtain rope"
             >
               {/* Rope */}
@@ -211,7 +207,7 @@ const Index = () => {
                 {/* Shine effect */}
                 <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-white/40 via-transparent to-transparent rounded-l-full" />
               </div>
-              
+
               {/* Tassel */}
               <div className="relative w-16 h-20 -mt-2" style={{ marginLeft: '-26px' }}>
                 {/* Tassel top */}
@@ -229,7 +225,7 @@ const Index = () => {
                   ))}
                 </div>
               </div>
-              
+
               {!rightRopePulled && (
                 <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-[hsl(var(--gold))] text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
                   Pull to Open
@@ -270,7 +266,7 @@ const Index = () => {
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none">
                     {/* Fast wave - grows and elongates */}
                     <div
-                      className="absolute top-0 left-0 border-[5px] border-[hsl(var(--earth-brown))] animate-ripple-from-left-fast"
+                      className="absolute top-0 left-0 border-[5px] border-[hsl(var(--earth-brown))] animate-ripple-fast"
                       style={{
                         width: '60px',
                         height: '100px',
@@ -281,7 +277,7 @@ const Index = () => {
                     />
                     {/* Slow wave - grows and elongates more */}
                     <div
-                      className="absolute top-0 left-0 border-[6px] border-[hsl(var(--earth-brown))] animate-ripple-from-left-slow"
+                      className="absolute top-0 left-0 border-[6px] border-[hsl(var(--earth-brown))] animate-ripple-slow"
                       style={{
                         width: '70px',
                         height: '120px',
@@ -295,9 +291,8 @@ const Index = () => {
 
                 {/* Ground/Soil Base */}
                 <div className="relative inline-block">
-                  <div className={`inline-block p-8 bg-gradient-to-b from-[hsl(var(--card))] to-[hsl(var(--earth-dark)/0.3)] rounded-2xl border-2 border-[hsl(var(--earth-brown))] shadow-[var(--shadow-dramatic)] relative overflow-hidden ${
-                    fastShake ? 'animate-earthquake-shake-fast' : slowShake ? 'animate-earthquake-shake-slow' : ''
-                  } ${grandFinale ? 'animate-enlarge' : ''}`}>
+                  <div className={`inline-block p-8 bg-gradient-to-b from-[hsl(var(--card))] to-[hsl(var(--earth-dark)/0.3)] rounded-2xl border-2 border-[hsl(var(--earth-brown))] shadow-[var(--shadow-dramatic)] relative overflow-hidden ${fastShake ? 'animate-earthquake-shake-fast' : slowShake ? 'animate-earthquake-shake-slow' : ''
+                    } ${grandFinale ? 'animate-enlarge' : ''}`}>
                     {/* Cracks appear during shake */}
                     {slowShake && (
                       <>
@@ -306,9 +301,12 @@ const Index = () => {
                         <div className="absolute top-1/3 right-1/4 w-0.5 h-2/3 bg-[hsl(var(--crack))] opacity-40 transform rotate-6" />
                       </>
                     )}
-                    
+
                     <h2 className="text-6xl md:text-8xl font-black text-[hsl(var(--foreground))] drop-shadow-lg">
                       Welcome!
+                      <span className="absolute inset-0 rounded-full bg-primary/30 animate-wave-ripple"></span>
+                      <span className="absolute inset-0 rounded-full bg-primary/20 animate-wave-ripple [animation-delay:2s]"></span>
+                      <span className="absolute inset-0 rounded-full bg-primary/10 animate-wave-ripple [animation-delay:4s]"></span>
                     </h2>
                   </div>
 
@@ -334,7 +332,7 @@ const Index = () => {
                     18th Symposium on Earthquake Engineering
                   </h3>
                   <p className="text-lg md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto">
-                    Join us for groundbreaking research, innovative solutions, and collaborative discussions 
+                    Join us for groundbreaking research, innovative solutions, and collaborative discussions
                     on advancing earthquake engineering and seismic safety.
                   </p>
                 </div>
@@ -351,7 +349,7 @@ const Index = () => {
 
         {/* Stage Floor */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent" />
-        
+
         {/* Footer Credits */}
         {showContent && (
           <div className="absolute bottom-8 text-center text-lg text-[hsl(var(--muted-foreground))] animate-fade-in-scale" style={{ animationDelay: "0.5s" }}>

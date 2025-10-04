@@ -7,7 +7,8 @@ const Index = () => {
   const [leftRopePulled, setLeftRopePulled] = useState(false);
   const [rightRopePulled, setRightRopePulled] = useState(false);
   const [ripplesStarted, setRipplesStarted] = useState(false);
-  const [shakeStarted, setShakeStarted] = useState(false);
+  const [slowShake, setSlowShake] = useState(false);
+  const [fastShake, setFastShake] = useState(false);
   const [grandFinale, setGrandFinale] = useState(false);
 
   const handleRopePull = (side: "left" | "right") => {
@@ -34,17 +35,21 @@ const Index = () => {
       // Start ripples from left
       setTimeout(() => {
         setRipplesStarted(true);
-        // When ripples reach middle, start shaking
+        // Fast wave reaches middle - start slow shake (1.5s)
         setTimeout(() => {
-          setShakeStarted(true);
-          // After 4 seconds of shaking, enlarge and redirect
+          setSlowShake(true);
+          // Slow wave reaches middle - upgrade to fast shake (3s)
           setTimeout(() => {
-            setGrandFinale(true);
+            setFastShake(true);
+            // After 3 seconds of fast shaking, enlarge and redirect
             setTimeout(() => {
-              window.location.href = "https://iitr.ac.in/18see/";
-            }, 2000);
-          }, 4000);
-        }, 2000);
+              setGrandFinale(true);
+              setTimeout(() => {
+                window.location.href = "https://iitr.ac.in/18see/";
+              }, 2000);
+            }, 3000);
+          }, 1500);
+        }, 1500);
       }, 1000);
     }
   }, [showContent]);
@@ -260,31 +265,37 @@ const Index = () => {
           {showContent && (
             <div className={`relative z-10 text-center space-y-8 max-w-4xl px-6 ${grandFinale ? 'animate-zoom-out' : 'animate-fade-in-scale'}`}>
               <div className="space-y-6">
-                {/* Ripple Waves from Left */}
+                {/* Ripple Waves from Left - Only 2 waves */}
                 {ripplesStarted && (
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none">
-                    {[...Array(6)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute top-0 left-0 border-4 border-[hsl(var(--earth-brown))] rounded-full animate-ripple-from-left"
-                        style={{
-                          width: `${100 + i * 80}px`,
-                          height: `${100 + i * 80}px`,
-                          animationDelay: `${i * 0.3}s`,
-                          opacity: 0.7 - i * 0.1,
-                        }}
-                      />
-                    ))}
+                    {/* Fast wave */}
+                    <div
+                      className="absolute top-0 left-0 border-4 border-[hsl(var(--earth-brown))] rounded-full animate-ripple-from-left-fast"
+                      style={{
+                        width: '100px',
+                        height: '100px',
+                        opacity: 0.8,
+                      }}
+                    />
+                    {/* Slow wave */}
+                    <div
+                      className="absolute top-0 left-0 border-[5px] border-[hsl(var(--earth-brown))] rounded-full animate-ripple-from-left-slow"
+                      style={{
+                        width: '120px',
+                        height: '120px',
+                        opacity: 0.9,
+                      }}
+                    />
                   </div>
                 )}
 
                 {/* Ground/Soil Base */}
                 <div className="relative inline-block">
                   <div className={`inline-block p-8 bg-gradient-to-b from-[hsl(var(--card))] to-[hsl(var(--earth-dark)/0.3)] rounded-2xl border-2 border-[hsl(var(--earth-brown))] shadow-[var(--shadow-dramatic)] relative overflow-hidden ${
-                    shakeStarted ? 'animate-earthquake-shake' : ''
+                    fastShake ? 'animate-earthquake-shake-fast' : slowShake ? 'animate-earthquake-shake-slow' : ''
                   } ${grandFinale ? 'animate-enlarge' : ''}`}>
                     {/* Cracks appear during shake */}
-                    {shakeStarted && (
+                    {slowShake && (
                       <>
                         <div className="absolute top-0 left-1/4 w-0.5 h-full bg-[hsl(var(--crack))] opacity-60 transform -rotate-12" />
                         <div className="absolute top-1/2 left-0 w-full h-0.5 bg-[hsl(var(--crack))] opacity-60" />

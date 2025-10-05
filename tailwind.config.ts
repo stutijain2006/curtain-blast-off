@@ -128,27 +128,27 @@ export default {
         "quarter-wave-fast": {
           "0%": {
             transform: "scale(1, 1)",
+            opacity: "0.4"
+          },
+          "50%": {
             opacity: "0.5"
           },
-          "30%": {
-            opacity: "0.7"
-          },
           "100%": {
-            transform: "scale(20, 20)",
-            opacity: "0.15"
+            transform: "scale(18, 18)",
+            opacity: "0.1"
           }
         },
         "quarter-wave-slow": {
           "0%": {
             transform: "scale(1, 1)",
+            opacity: "0.45"
+          },
+          "50%": {
             opacity: "0.55"
           },
-          "40%": {
-            opacity: "0.65"
-          },
           "100%": {
-            transform: "scale(10, 10)",
-            opacity: "0.2"
+            transform: "scale(9, 9)",
+            opacity: "0.15"
           }
         },
         "ripple-propagate-fast": {
@@ -266,8 +266,8 @@ export default {
         "particle-float": "particle-float 8s ease-in-out infinite",
         "flash": "flash 2s ease-out",
         "zoom-out": "zoom-out 2s ease-in forwards",
-        "quarter-wave-fast": "quarter-wave-fast 2.5s ease-out forwards",
-        "quarter-wave-slow": "quarter-wave-slow 5s ease-out forwards",
+        "quarter-wave-fast": "quarter-wave-fast 6s ease-out forwards",
+        "quarter-wave-slow": "quarter-wave-slow 12s ease-out forwards",
         "earthquake-shake-slow": "earthquake-shake-slow 0.8s ease-in-out infinite",
         "earthquake-shake-fast": "earthquake-shake-fast 0.3s ease-in-out infinite",
         "ripple-fast": "ripple-propagate-fast 3s ease-out forwards",

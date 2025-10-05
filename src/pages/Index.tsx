@@ -245,7 +245,7 @@ const Index = () => {
               <div className="space-y-4">
                 <Sparkles className="w-16 h-16 mx-auto text-[hsl(var(--gold))] animate-pulse-glow" />
                 <h1 className="text-5xl md:text-7xl font-bold text-[hsl(var(--gold))] drop-shadow-[0_0_30px_hsl(var(--gold-glow))]">
-                  Opening Ceremony
+                  Website Launch
                 </h1>
                 <p className="text-xl md:text-2xl text-[hsl(var(--foreground))]">
                   18th Symposium on Earthquake Engineering
@@ -302,7 +302,7 @@ const Index = () => {
                       </>
                     )}
 
-                    <h2 className="text-6xl md:text-8xl font-black text-[hsl(var(--foreground))] drop-shadow-lg">
+                    <h2 className="text-6xl md:text-8xl font-black text-[hsl(var(--foreground))] drop-shadow-lg ">
                       Welcome!
                       <span className="absolute inset-0 rounded-full bg-primary/30 animate-wave-ripple"></span>
                       <span className="absolute inset-0 rounded-full bg-primary/20 animate-wave-ripple [animation-delay:2s]"></span>
@@ -331,10 +331,6 @@ const Index = () => {
                   <h3 className="text-4xl md:text-5xl font-bold leading-tight text-[hsl(var(--earth-brown))]">
                     18th Symposium on Earthquake Engineering
                   </h3>
-                  <p className="text-lg md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto">
-                    Join us for groundbreaking research, innovative solutions, and collaborative discussions
-                    on advancing earthquake engineering and seismic safety.
-                  </p>
                 </div>
 
                 {grandFinale && (
@@ -348,12 +344,12 @@ const Index = () => {
         </div>
 
         {/* Stage Floor */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
 
         {/* Footer Credits */}
         {showContent && (
-          <div className="absolute bottom-8 text-center text-lg text-[hsl(var(--muted-foreground))] animate-fade-in-scale" style={{ animationDelay: "0.5s" }}>
-            Earthquake Engineering Department
+          <div className="absolute bottom-8 text-center text-2xl text-[hsl(var(--muted-foreground))] animate-fade-in-scale" style={{ animationDelay: "0.5s" }}>
+            Department of Earthquake Engineering, IIT Roorkee
           </div>
         )}
       </div>

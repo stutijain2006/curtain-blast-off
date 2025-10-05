@@ -15,6 +15,7 @@ export default {
     extend: {
       fontFamily: {
         'rocky': ['Rubik Mono One', 'cursive'],
+        'impact': ['Impact', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

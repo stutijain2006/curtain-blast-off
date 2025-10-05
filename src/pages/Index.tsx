@@ -307,9 +307,10 @@ const Index = () => {
                       </>
                     )}
 
-                    <h2 className="text-7xl md:text-9xl font-rocky font-black bg-gradient-to-br from-[hsl(var(--earth-brown))] via-[hsl(var(--rock-gray))] to-[hsl(var(--earth-dark))] bg-clip-text text-transparent drop-shadow-[0_4px_8px_rgba(0,0,0,0.4)] relative">
-                      <span className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--earth-brown)/0.3)] via-[hsl(var(--rock-gray)/0.2)] to-transparent blur-sm"></span>
-                      <span className="relative">Welcome!</span>
+                    <h2
+                      className="text-7xl md:text-9xl font-impact font-bold text-[hsl(var(--earth-brown))] drop-shadow-[0_4px_8px_rgba(0,0,0,0.4)]"
+                    >
+                      Welcome!
                     </h2>
                   </div>
 

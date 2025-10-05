@@ -35,26 +35,26 @@ const Index = () => {
       // Start ripples after 4-5 seconds
       setTimeout(() => {
         setRipplesStarted(true);
-        // Outer (fast) wave takes 6s to reach welcome (bottom-left corner)
+        // Outer wave hits welcome at ~2.5s
         setTimeout(() => {
           setSlowShake(true);
-          // Inner (slow) wave takes 12s total, so 6s more after outer wave
+          // Inner wave hits welcome at ~4s (1.5s after outer)
           setTimeout(() => {
             setFastShake(true);
             setSlowShake(false);
-            // Keep fast shaking until inner wave passes (another 3s)
+            // Inner wave passes welcome at ~6s (2s of fast shaking)
             setTimeout(() => {
               setFastShake(false);
-              // Wait a bit, then finale
+              // Brief pause, then finale
               setTimeout(() => {
                 setGrandFinale(true);
                 setTimeout(() => {
                   window.location.href = "https://iitr.ac.in/18see/";
                 }, 2000);
-              }, 2000);
-            }, 3000);
-          }, 6000);
-        }, 6000);
+              }, 1500);
+            }, 2000);
+          }, 1500);
+        }, 2500);
       }, 5000);
     }
   }, [showContent]);
@@ -269,30 +269,30 @@ const Index = () => {
                 {/* Earthquake Quarter-Circle Waves from Bottom-Left Corner */}
                 {ripplesStarted && (
                   <>
-                    {/* Outer/Fast wave - radius increases twice as fast */}
+                    {/* Outer/Fast wave - extremely thin red wave */}
                     <div
-                      className="absolute bottom-0 left-0 border-[2px] border-[hsl(var(--earth-brown))] animate-quarter-wave-fast pointer-events-none"
+                      className="absolute bottom-0 left-0 border-[1px] border-[hsl(var(--earth-brown))] animate-quarter-wave-fast pointer-events-none"
                       style={{
-                        width: '80px',
-                        height: '80px',
+                        width: '60px',
+                        height: '60px',
                         borderRadius: '0 100% 0 0',
                         borderLeft: 'none',
                         borderBottom: 'none',
                         transformOrigin: 'bottom left',
-                        opacity: 0.4,
+                        opacity: 0.6,
                       }}
                     />
-                    {/* Inner/Slow wave - radius increases slower */}
+                    {/* Inner/Slow wave - extremely thin blue wave */}
                     <div
-                      className="absolute bottom-0 left-0 border-[3px] border-[hsl(var(--primary))] animate-quarter-wave-slow pointer-events-none"
+                      className="absolute bottom-0 left-0 border-[1px] border-[hsl(var(--primary))] animate-quarter-wave-slow pointer-events-none"
                       style={{
-                        width: '80px',
-                        height: '80px',
+                        width: '60px',
+                        height: '60px',
                         borderRadius: '0 100% 0 0',
                         borderLeft: 'none',
                         borderBottom: 'none',
                         transformOrigin: 'bottom left',
-                        opacity: 0.45,
+                        opacity: 0.65,
                       }}
                     />
                   </>

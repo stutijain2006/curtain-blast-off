@@ -32,28 +32,24 @@ const Index = () => {
   // Ripple and shake animation sequence
   useEffect(() => {
     if (showContent) {
-      // Start ripples after 4-5 seconds
+      // Start ripples after 5 seconds
       setTimeout(() => {
         setRipplesStarted(true);
-        // Outer wave hits welcome at ~2.5s
+        // Outer/red wave touches welcome at ~2.5s
         setTimeout(() => {
           setSlowShake(true);
-          // Inner wave hits welcome at ~4s (1.5s after outer)
+          // Inner/blue wave crosses welcome at ~8s (5.5s after outer touches)
           setTimeout(() => {
-            setFastShake(true);
             setSlowShake(false);
-            // Inner wave passes welcome at ~6s (2s of fast shaking)
+            setFastShake(false);
+            // Wait 2.5 seconds before grand finale
             setTimeout(() => {
-              setFastShake(false);
-              // Brief pause, then finale
+              setGrandFinale(true);
               setTimeout(() => {
-                setGrandFinale(true);
-                setTimeout(() => {
-                  window.location.href = "https://iitr.ac.in/18see/";
-                }, 2000);
-              }, 1500);
-            }, 2000);
-          }, 1500);
+                window.location.href = "https://iitr.ac.in/18see/";
+              }, 2000);
+            }, 2500);
+          }, 5500);
         }, 2500);
       }, 5000);
     }

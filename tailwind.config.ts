@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        'rocky': ['Rubik Mono One', 'cursive'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -122,30 +125,30 @@ export default {
           "90%": { opacity: "1" },
           "100%": { transform: "translateY(-100vh) translateX(50px) scale(1)", opacity: "0" },
         },
-        "ripple-from-left-fast": {
+        "quarter-wave-fast": {
           "0%": {
-            transform: "translateX(0) scale(0.5, 0.5)",
-            opacity: "0.8"
+            transform: "scale(1, 1)",
+            opacity: "0.5"
           },
-          "50%": {
+          "30%": {
             opacity: "0.7"
           },
           "100%": {
-            transform: "translateX(50vw) scale(2, 1.2)",
-            opacity: "0.3"
+            transform: "scale(20, 20)",
+            opacity: "0.15"
           }
         },
-        "ripple-from-left-slow": {
+        "quarter-wave-slow": {
           "0%": {
-            transform: "translateX(0) scale(0.6, 0.6)",
-            opacity: "0.8"
+            transform: "scale(1, 1)",
+            opacity: "0.55"
           },
-          "50%": {
-            opacity: "0.6"
+          "40%": {
+            opacity: "0.65"
           },
           "100%": {
-            transform: "translateX(50vw) scale(2.5,1.5)",
-            opacity: "0.35"
+            transform: "scale(10, 10)",
+            opacity: "0.2"
           }
         },
         "ripple-propagate-fast": {
@@ -263,8 +266,8 @@ export default {
         "particle-float": "particle-float 8s ease-in-out infinite",
         "flash": "flash 2s ease-out",
         "zoom-out": "zoom-out 2s ease-in forwards",
-        "ripple-from-left-fast": "ripple-from-left-fast 1.5s ease-out forwards",
-        "ripple-from-left-slow": "ripple-from-left-slow 3s ease-out forwards",
+        "quarter-wave-fast": "quarter-wave-fast 2.5s ease-out forwards",
+        "quarter-wave-slow": "quarter-wave-slow 5s ease-out forwards",
         "earthquake-shake-slow": "earthquake-shake-slow 0.8s ease-in-out infinite",
         "earthquake-shake-fast": "earthquake-shake-fast 0.3s ease-in-out infinite",
         "ripple-fast": "ripple-propagate-fast 3s ease-out forwards",

@@ -32,25 +32,30 @@ const Index = () => {
   // Ripple and shake animation sequence
   useEffect(() => {
     if (showContent) {
-      // Start ripples from left
+      // Start ripples after 4-5 seconds
       setTimeout(() => {
         setRipplesStarted(true);
-        // Fast wave reaches middle - start slow shake (1.5s)
+        // Outer (fast) wave takes 2.5s to reach welcome (bottom-left corner)
         setTimeout(() => {
           setSlowShake(true);
-          // Slow wave reaches middle - upgrade to fast shake (3s)
+          // Inner (slow) wave takes 5s total, so 2.5s more after outer wave starts shake
           setTimeout(() => {
             setFastShake(true);
-            // After 3 seconds of fast shaking, enlarge and redirect
+            // Keep shaking until inner wave passes
             setTimeout(() => {
-              setGrandFinale(true);
+              // Stop shaking, wait 3-4 seconds, then finale
+              setSlowShake(false);
+              setFastShake(false);
               setTimeout(() => {
-                window.location.href = "https://iitr.ac.in/18see/";
-              }, 2000);
-            }, 3000);
-          }, 1500);
-        }, 1500);
-      }, 1000);
+                setGrandFinale(true);
+                setTimeout(() => {
+                  window.location.href = "https://iitr.ac.in/18see/";
+                }, 2000);
+              }, 3500);
+            }, 2500);
+          }, 2500);
+        }, 2500);
+      }, 5000);
     }
   }, [showContent]);
 
@@ -261,32 +266,36 @@ const Index = () => {
           {showContent && (
             <div className={`relative z-10 text-center space-y-8 max-w-4xl px-6 ${grandFinale ? 'animate-zoom-out' : 'animate-fade-in-scale'}`}>
               <div className="space-y-6">
-                {/* Earthquake Waves from Left - Dynamic expanding waves */}
+                {/* Earthquake Quarter-Circle Waves from Bottom-Left Corner */}
                 {ripplesStarted && (
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none">
-                    {/* Fast wave - grows and elongates */}
+                  <>
+                    {/* Outer/Fast wave - radius increases twice as fast */}
                     <div
-                      className="absolute top-0 left-0 border-[5px] border-[hsl(var(--earth-brown))] animate-ripple-fast"
+                      className="absolute bottom-0 left-0 border-[6px] border-[hsl(var(--earth-brown))] animate-quarter-wave-fast pointer-events-none"
                       style={{
-                        width: '60px',
-                        height: '100px',
-                        borderRadius: '50%',
-                        transformOrigin: 'left center',
-                        opacity: 0.6,
-                      }}
-                    />
-                    {/* Slow wave - grows and elongates more */}
-                    <div
-                      className="absolute top-0 left-0 border-[6px] border-[hsl(var(--earth-brown))] animate-ripple-slow"
-                      style={{
-                        width: '70px',
+                        width: '120px',
                         height: '120px',
-                        borderRadius: '50%',
-                        transformOrigin: 'left center',
-                        opacity: 0.65,
+                        borderRadius: '0 100% 0 0',
+                        borderLeft: 'none',
+                        borderBottom: 'none',
+                        transformOrigin: 'bottom left',
+                        opacity: 0.5,
                       }}
                     />
-                  </div>
+                    {/* Inner/Slow wave - radius increases slower */}
+                    <div
+                      className="absolute bottom-0 left-0 border-[7px] border-[hsl(var(--primary))] animate-quarter-wave-slow pointer-events-none"
+                      style={{
+                        width: '120px',
+                        height: '120px',
+                        borderRadius: '0 100% 0 0',
+                        borderLeft: 'none',
+                        borderBottom: 'none',
+                        transformOrigin: 'bottom left',
+                        opacity: 0.55,
+                      }}
+                    />
+                  </>
                 )}
 
                 {/* Ground/Soil Base */}
@@ -302,11 +311,9 @@ const Index = () => {
                       </>
                     )}
 
-                    <h2 className="text-6xl md:text-8xl font-black text-[hsl(var(--foreground))] drop-shadow-lg ">
-                      Welcome!
-                      <span className="absolute inset-0 rounded-full bg-primary/30 animate-wave-ripple"></span>
-                      <span className="absolute inset-0 rounded-full bg-primary/20 animate-wave-ripple [animation-delay:2s]"></span>
-                      <span className="absolute inset-0 rounded-full bg-primary/10 animate-wave-ripple [animation-delay:4s]"></span>
+                    <h2 className="text-7xl md:text-9xl font-rocky font-black bg-gradient-to-br from-[hsl(var(--earth-brown))] via-[hsl(var(--rock-gray))] to-[hsl(var(--earth-dark))] bg-clip-text text-transparent drop-shadow-[0_4px_8px_rgba(0,0,0,0.4)] relative">
+                      <span className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--earth-brown)/0.3)] via-[hsl(var(--rock-gray)/0.2)] to-transparent blur-sm"></span>
+                      <span className="relative">Welcome!</span>
                     </h2>
                   </div>
 

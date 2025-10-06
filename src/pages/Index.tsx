@@ -267,7 +267,7 @@ const Index = () => {
                   <>
                     {/* Outer/Fast wave - extremely thin red wave */}
                     <div
-                      className="absolute bottom-0 left-0 border-[1px] border-[hsl(var(--earth-brown))] animate-quarter-wave-fast pointer-events-none"
+                      className="absolute bottom-0 left-0 border-[1px] border-[hsl(var(--primary))] animate-quarter-wave-fast pointer-events-none"
                       style={{
                         width: '60px',
                         height: '60px',
@@ -280,7 +280,7 @@ const Index = () => {
                     />
                     {/* Inner/Slow wave - extremely thin blue wave */}
                     <div
-                      className="absolute bottom-0 left-0 border-[1px] border-[hsl(var(--primary))] animate-quarter-wave-slow pointer-events-none"
+                      className="absolute bottom-0 left-0 border-[1px] border-[hsl(var(--earth-brown))] animate-quarter-wave-slow pointer-events-none"
                       style={{
                         width: '60px',
                         height: '60px',
@@ -332,7 +332,7 @@ const Index = () => {
                 </div>
 
                 <div className="space-y-4 text-[hsl(var(--foreground))] pt-8">
-                  <h3 className="text-4xl md:text-5xl font-bold leading-tight text-[hsl(var(--earth-brown))]">
+                  <h3 className="text-4xl md:text-5xl font-bold leading-tight text-[hsl(var(--gold))]">
                     18th Symposium on Earthquake Engineering
                   </h3>
                 </div>
@@ -352,7 +352,7 @@ const Index = () => {
 
         {/* Footer Credits */}
         {showContent && (
-          <div className="absolute bottom-8 text-center text-2xl text-[hsl(var(--muted-foreground))] animate-fade-in-scale" style={{ animationDelay: "0.5s" }}>
+          <div className="absolute bottom-16 text-center text-2xl text-[hsl(var(--muted-foreground))]" style={{ animationDelay: "0.5s" }}>
             Department of Earthquake Engineering, IIT Roorkee
           </div>
         )}
